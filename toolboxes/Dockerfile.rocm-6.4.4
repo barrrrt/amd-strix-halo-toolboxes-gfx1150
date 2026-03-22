@@ -21,7 +21,7 @@ RUN git clean -xdf \
   && HIPCXX="$(hipconfig -l)/clang" HIP_PATH="$(hipconfig -R)" \
   cmake -S . -B build \
   -DGGML_HIP=ON \
-  -DAMDGPU_TARGETS=gfx1150 \
+  -DAMDGPU_TARGETS=gfx1151 \
   -DCMAKE_BUILD_TYPE=Release \
   -DGGML_RPC=ON \
   -DLLAMA_HIP_UMA=ON \

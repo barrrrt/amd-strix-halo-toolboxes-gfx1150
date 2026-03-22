@@ -6,10 +6,10 @@ RUN dnf -y --nodocs --setopt=install_weak_deps=False install \
   radeontop git vim patch curl ninja-build tar xz aria2c \
   && dnf clean all && rm -rf /var/cache/dnf/*
 
-# find & fetch the latest Linux 7.x.x tarball (gfx1150)
+# find & fetch the latest Linux 7.x.x tarball (gfx1151)
 WORKDIR /tmp
 ARG ROCM_MAJOR_VER=7
-ARG GFX=gfx1150
+ARG GFX=gfx1151
 RUN set -euo pipefail; \
   BASE="https://therock-nightly-tarball.s3.amazonaws.com"; \
   PREFIX="therock-dist-linux-${GFX}-${ROCM_MAJOR_VER}"; \
@@ -63,7 +63,7 @@ RUN git clone -b ${BRANCH} --single-branch --recursive ${REPO} . \
 
 RUN cmake -S . -B build \
   -DGGML_HIP=ON \
-  -DAMDGPU_TARGETS=gfx1150 \
+  -DAMDGPU_TARGETS=gfx1151 \
   -DCMAKE_BUILD_TYPE=Release \
   -DGGML_RPC=ON \
   -DLLAMA_HIP_UMA=ON \
