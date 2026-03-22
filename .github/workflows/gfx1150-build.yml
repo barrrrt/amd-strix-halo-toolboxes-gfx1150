@@ -13,6 +13,11 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
 
+    - name: Configure Git User
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
     - name: Sync toolboxes from kyuz0
       run: |
         git remote add upstream https://github.com/kyuz0/amd-strix-halo-toolboxes.git || true
@@ -24,10 +29,9 @@ jobs:
         git commit -m "Sync toolboxes from kyuz0" || echo "No changes"
         git push origin main
 
-    - name: gfx1150 Anpassungen (1151 → 1150 ersetzen)
+    - name: gfx1150 Anpassungen (1151 → 1150)
       run: |
         cd toolboxes
-        # NUR in Dockerfile.* "gfx1151" → "gfx1150" und "1151" → "1150" ersetzen
         for file in Dockerfile.*; do
           if [[ -f "$file" ]]; then
             sed -i 's/gfx1151/gfx1150/g' "$file"
@@ -45,7 +49,7 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Build & Push alle Images
+    - name: Build & Push Images
       run: |
         cd toolboxes
         docker buildx create --use
@@ -53,6 +57,6 @@ jobs:
           if [[ -f "$file" ]]; then
             tag="barrrrt/amd-strix-halo-toolboxes-gfx1150:${file#Dockerfile.}"
             docker buildx build --platform linux/amd64 -f "$file" -t "$tag" --push .
-            echo "Built & pushed: $tag"
+            echo "Built: $tag"
           fi
         done
