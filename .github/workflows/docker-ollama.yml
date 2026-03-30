@@ -37,7 +37,7 @@ jobs:
           push: true
           tags: |
             barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies-ollama
-            barrrrt/amd-strix-halo-toolboxes-gfx1150:ollama-latest
-            barrrrt/amd-strix-halo-toolboxes-gfx1150:ollama-${{ github.sha }}
+            barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies-ollama-latest
+            barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies-ollama-${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
