@@ -1,4 +1,4 @@
 FROM barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies
-RUN dnf install -y curl zstd && dnf clean all
+RUN dnf install -y curl zstd tar && dnf clean all
 RUN curl -fsSL https://ollama.com/install.sh | sh
 CMD ["ollama", "serve"]
