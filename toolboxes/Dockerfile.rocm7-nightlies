@@ -6,10 +6,10 @@ RUN dnf -y --nodocs --setopt=install_weak_deps=False install \
   radeontop git vim patch curl ninja-build tar xz aria2c \
   && dnf clean all && rm -rf /var/cache/dnf/*
 
-# find & fetch the latest Linux 7.x.x tarball (gfx1151)
+# find & fetch the latest Linux 7.x.x tarball (gfx1150)
 WORKDIR /tmp
 ARG ROCM_MAJOR_VER=7
-ARG GFX=gfx1151
+ARG GFX=gfx1150
 RUN set -euo pipefail; \
   BASE="https://therock-nightly-tarball.s3.amazonaws.com"; \
   PREFIX="therock-dist-linux-${GFX}-${ROCM_MAJOR_VER}"; \
@@ -64,7 +64,7 @@ COPY llama-grammar.patch /tmp/llama-grammar.patch
 RUN patch -p1 < /tmp/llama-grammar.patch \
   && cmake -S . -B build \
   -DGGML_HIP=ON \
-  -DAMDGPU_TARGETS=gfx1151 \
+  -DAMDGPU_TARGETS=gfx1150 \
   -DCMAKE_BUILD_TYPE=Release \
   -DGGML_RPC=ON \
   -DLLAMA_HIP_UMA=ON \
