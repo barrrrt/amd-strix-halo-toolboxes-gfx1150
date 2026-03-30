@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - Dockerfile.ollama
+      - toolboxes/Dockerfile.ollama
       - .github/workflows/docker-ollama.yml
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./Dockerfile.ollama
+          file: ./toolboxes/Dockerfile.ollama
           push: true
           tags: |
             barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies-ollama
