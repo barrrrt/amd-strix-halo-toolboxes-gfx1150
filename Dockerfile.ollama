@@ -1,6 +1,6 @@
 FROM barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies
 
-RUN curl -fsSL https://ollama.ai/install.sh | sh
+RUN curl -fsSL https://ollama.com/install.sh | sh
 
 EXPOSE 11434
 EXPOSE 8080
