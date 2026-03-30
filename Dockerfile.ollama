@@ -1,5 +1,4 @@
 FROM barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies
-
+RUN apt-get update && apt-get install -y curl zstd && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://ollama.com/install.sh | sh
-
 CMD ["ollama", "serve"]
