@@ -1,0 +1,19 @@
+FROM barrrrt/amd-strix-halo-toolboxes-gfx1150:rocm7-nightlies
+
+RUN curl -fsSL https://ollama.ai/install.sh | sh
+
+EXPOSE 11434
+EXPOSE 8080
+
+CMD ["/bin/bash", "-lc", "\
+  ollama serve > /tmp/ollama.log 2>&1 & \
+  sleep 5 && \
+  exec /usr/local/sbin/llama-server \
+    --host 0.0.0.0 \
+    --port 8080 \
+    -m /models/Llama-3.3-70B-Instruct-Q4_K_M.gguf \
+    --ctx-size 32768 \
+    --n-gpu-layers 999 \
+    --flash-attn on \
+    --parallel 1 \
+"]
